@@ -2,6 +2,7 @@
 
 
 #include "ObjectiveComponent.h"
+#include "ObjectiveWorldSubsystem.h"
 #include "Engine/World.h"
 
 // Sets default values for this component's properties
@@ -25,20 +26,20 @@ void UObjectiveComponent::SetState(EObjectiveState NewState)
 void UObjectiveComponent::InitializeComponent()
 {
 	Super::InitializeComponent();
-	//register
-	//UObjectiveWorldSubsystem* ObjectiveWorldSubsystem = GetWorld()->GetSubsystem<UObjectiveWorldSubsystem>();
-	//if (ObjectiveWorldSubsystem)
-	//{
-	//	ObjectiveWorldSubsystem->AddObjective(this);
-	//}
+	register
+	UObjectiveWorldSubsystem* ObjectiveWorldSubsystem = GetWorld()->GetSubsystem<UObjectiveWorldSubsystem>();
+	if (ObjectiveWorldSubsystem)
+	{
+		ObjectiveWorldSubsystem->AddObjective(this);
+	}
 }
 
 void UObjectiveComponent::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	//UObjectiveWorldSubsystem* ObjectiveWorldSubsystem = GetWorld()->GetSubsystem<UObjectiveWorldSubsystem>();
-	//if (ObjectiveWorldSubsystem)
-	//{
-	//	ObjectiveWorldSubsystem->RemoveObjective(this);
-	//}
+	UObjectiveWorldSubsystem* ObjectiveWorldSubsystem = GetWorld()->GetSubsystem<UObjectiveWorldSubsystem>();
+	if (ObjectiveWorldSubsystem)
+	{
+		ObjectiveWorldSubsystem->RemoveObjective(this);
+	}
 	Super::EndPlay(EndPlayReason);
 }
