@@ -2,7 +2,7 @@
 
 #include "DealDamageComponent.h"
 #include "Components/CapsuleComponent.h"
-//#include "MazeGamePlayerCharacter.h"
+#include "MazeGamePlayerCharacter.h"
 
 // Sets default values for this component's properties
 UDealDamageComponent::UDealDamageComponent()
@@ -36,11 +36,11 @@ void UDealDamageComponent::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, A
 		return;
 	}
 
-	//AAbstractionPlayerCharacter* PlayerCharacter = Cast<AAbstractionPlayerCharacter>(OtherActor);
-	//if (PlayerCharacter)
-	//{
-	//	PlayerCharacter->SetOnFire(BaseDamage, DamageTotalTime, TakeDamageInterval);
-	//}
+	AMazeGamePlayerCharacter* PlayerCharacter = Cast<AMazeGamePlayerCharacter>(OtherActor);
+	if (PlayerCharacter)
+	{
+		PlayerCharacter->SetOnFire(BaseDamage, DamageTotalTime, TakeDamageInterval);
+	}
 }
 
 void UDealDamageComponent::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)

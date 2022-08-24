@@ -2,7 +2,7 @@
 
 
 #include "DamageHandlerComponent.h"
-//#include "MazeGamePlayerCharacter.h"
+#include "MazeGamePlayerCharacter.h"
 #include "GameFramework/DamageType.h"
 #include "particles/ParticleSystemComponent.h"
 #include "Misc/ScopeLock.h"
@@ -17,7 +17,7 @@ void UDamageHandlerComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//PlayerCharacter = Cast<AMazePlayerCharacter>(GetOwner());
+	PlayerCharacter = Cast<AMazeGamePlayerCharacter>(GetOwner());
 }
 
 
@@ -33,11 +33,11 @@ void UDamageHandlerComponent::TickComponent(float DeltaTime, ELevelTick TickType
 		{
 			if (ActiveDamageInfo.GetValue().AccumulatedTime > ActiveDamageInfo.GetValue().Lifetime)
 			{
-				/*if (PlayerCharacter->ParticleSystemComponent)
+				if (PlayerCharacter->ParticleSystemComponent)
 				{
 					PlayerCharacter->ParticleSystemComponent->Deactivate();
 					PlayerCharacter->ParticleSystemComponent->SetTemplate(nullptr);
-				}*/
+				}
 				ActiveDamageInfo.Reset();
 			}
 			else
@@ -49,7 +49,7 @@ void UDamageHandlerComponent::TickComponent(float DeltaTime, ELevelTick TickType
 					float ModifiedDamage = ActiveDamageInfo.GetValue().BaseDamage / (ActiveDamageInfo.GetValue().Lifetime / ActiveDamageInfo.GetValue().IntervalTime);
 					TSubclassOf<UDamageType> const ValidDamageTypeClass = TSubclassOf<UDamageType>(UDamageType::StaticClass());
 					FDamageEvent DamageEvent(ValidDamageTypeClass);
-					//PlayerCharacter->TakeDamage(ModifiedDamage, DamageEvent, nullptr, GetOwner());
+					PlayerCharacter->TakeDamage(ModifiedDamage, DamageEvent, nullptr, GetOwner());
 					ActiveDamageInfo.GetValue().CurrentIntervalTime = 0.0f;
 				}
 			}
