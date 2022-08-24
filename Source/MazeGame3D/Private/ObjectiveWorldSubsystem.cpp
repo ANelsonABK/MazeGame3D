@@ -3,7 +3,7 @@
 
 #include "ObjectiveWorldSubsystem.h"
 #include "Kismet/GameplayStatics.h"
-//#include "MazeGameModeBase.h"
+#include "MazeGameModeBase.h"
 #include "Blueprint/UserWidget.h"
 #include "ObjectiveHud.h"
 
@@ -44,12 +44,12 @@ void UObjectiveWorldSubsystem::RemoveObjective(UObjectiveComponent* ObjectiveCom
 
 void UObjectiveWorldSubsystem::OnMapStart()
 {
-	/*AAbstractionGameModeBase* GameMode = Cast<AAbstractionGameModeBase>(GetWorld()->GetAuthGameMode());
+	AMazeGameModeBase* GameMode = Cast<AMazeGameModeBase>(GetWorld()->GetAuthGameMode());
 	if (GameMode)
 	{
 		CreateObjectiveWidgets();
 		DisplayObjectiveWidget();
-	}*/
+	}
 }
 
 void UObjectiveWorldSubsystem::Deinitialize()
@@ -64,13 +64,13 @@ void UObjectiveWorldSubsystem::CreateObjectiveWidgets()
 {
 	if (ObjectiveWidget == nullptr)
 	{
-		/*AAbstractionGameModeBase* GameMode = Cast<AAbstractionGameModeBase>(GetWorld()->GetAuthGameMode());
+		AMazeGameModeBase* GameMode = Cast<AMazeGameModeBase>(GetWorld()->GetAuthGameMode());
 		if (GameMode)
 		{
 			APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 			ObjectiveWidget = CreateWidget<UObjectiveHud>(PlayerController, GameMode->ObjectiveWidgetClass);
 			ObjectivesCompleteWidget = CreateWidget<UUserWidget>(PlayerController, GameMode->ObjectivesCompleteWidgetClass);
-		}*/
+		}
 	}
 }
 
