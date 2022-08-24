@@ -76,6 +76,24 @@ void AMazeGamePlayerCharacter::SetOnFire(float BaseDamage, float DamageTotalTime
 	}
 }
 
+const bool AMazeGamePlayerCharacter::IsAlive() const
+{
+	if (HealthComponent)
+	{
+		return !HealthComponent->IsDead();
+	}
+	return false;
+}
+
+const float AMazeGamePlayerCharacter::GetCurrentHealth() const
+{
+	if (HealthComponent)
+	{
+		return HealthComponent->GetCurrentHealth();
+	}
+	return 0.0f;
+}
+
 void AMazeGamePlayerCharacter::OnDeath(bool IsFellOut)
 {
 	APlayerController* PlayerController = GetController<APlayerController>();
