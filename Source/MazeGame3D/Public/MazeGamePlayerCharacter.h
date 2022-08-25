@@ -73,6 +73,9 @@ protected:
 
 	void OnDeath(bool IsFellOut);
 
+	UFUNCTION()
+		void OnDeathTimerFinished();
+
 	//Input Bindings
 	void InteractionStartRequested();
 	void InteractionCancelRequested();
@@ -93,4 +96,10 @@ protected:
 		float ForceFeedbackIntensity = 1.0f;
 	UPROPERTY(EditAnywhere, Category = "Force Feedback")
 		float ForceFeedbackDuration = 1.0f;
+
+	UPROPERTY(EditAnywhere)
+		float TimeRestartLevelAfterDeath = 2.0f;
+
+	// Handle to manage the death timer
+	FTimerHandle RestartLevelTimerHandle;
 };

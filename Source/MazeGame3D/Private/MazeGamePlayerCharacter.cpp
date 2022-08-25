@@ -50,6 +50,7 @@ void AMazeGamePlayerCharacter::SetupPlayerInputComponent(UInputComponent* Player
 
 void  AMazeGamePlayerCharacter::FellOutOfWorld(const UDamageType& dmgType)
 {
+	HealthComponent->SetCurrentHealth(0.0f);
 	OnDeath(true);
 }
 
@@ -57,7 +58,7 @@ float AMazeGamePlayerCharacter::TakeDamage(float DamageAmount, FDamageEvent cons
 {
 	float Damage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
 	UE_LOG(LogTemp, Warning, TEXT("AAbstractionPlayerCharacter::TakeDamage Damage %.2f"), Damage);
-	if (HealthComponent)
+	if (HealthComponent && !HealthComponent->IsDead())
 	{
 		HealthComponent->TakeDamage(Damage);
 		if (HealthComponent->IsDead())
@@ -95,6 +96,12 @@ const float AMazeGamePlayerCharacter::GetCurrentHealth() const
 }
 
 void AMazeGamePlayerCharacter::OnDeath(bool IsFellOut)
+{
+	GetWorld()->GetTimerManager().SetTimer(RestartLevelTimerHandle, this,
+		&AMazeGamePlayerCharacter::OnDeathTimerFinished, TimeRestartLevelAfterDeath, false);
+}
+
+void AMazeGamePlayerCharacter::OnDeathTimerFinished()
 {
 	APlayerController* PlayerController = GetController<APlayerController>();
 	if (PlayerController)
