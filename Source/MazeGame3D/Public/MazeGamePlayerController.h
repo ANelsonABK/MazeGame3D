@@ -9,6 +9,8 @@
 /**
  * 
  */
+//class A
+
 UCLASS()
 class MAZEGAME3D_API AMazeGamePlayerController : public APlayerController
 {
@@ -18,31 +20,40 @@ class MAZEGAME3D_API AMazeGamePlayerController : public APlayerController
 public:
 	AMazeGamePlayerController() {}
 
+	//virtual void BeginPlay() override;
+
 
 protected:
-	void SetupInputComponent() override;
+	//void SetupInputComponent() override;
 
-	void RequestMoveForward(float AxisValue);
-	void RequestMoveRight(float AxisValue);
-	void RequestLookUp(float AxisValue);
-	void RequestLookRight(float AxisValue);
-	void RequestJump();
-	void RequestStopJump();
+	//bool CanProcessRequest() const;
 
-	void RequestCrouchStart();
-	void RequestCrouchEnd();
+	//void RequestMoveForward(float AxisValue);
+	//void RequestMoveRight(float AxisValue);
+	//void RequestLookUp(float AxisValue);
+	//void RequestLookRight(float AxisValue);
+	//void RequestThrowObject(float AxisValue);
 
-	void RequestSprintStart();
-	void RequestSprintEnd();
+	//void RequestJump();
+	//void RequestStopJump();
 
-	/* Base lookup rate, in deg/sec. Other scaling may affect final lookup rate. */
-	UPROPERTY(EditAnywhere, Category = "Look")
-		float BaseLookupRate = 90.0f;
+	//void RequestCrouchStart();
+	//void RequestCrouchEnd();
 
-	/* Base lookright rate, in deg/sec. Other scaling may affect final lookup rate. */
-	UPROPERTY(EditAnywhere, Category = "Look")
-		float BaseLookRightRate = 90.0f;
+	//void RequestSprintStart();
+	//void RequestSprintEnd();
 
-	UPROPERTY(EditAnywhere, Category = "Movement")
-		float SprintSpeed = 1200.0f;
+	//void RequestPullorAimObject();
+	//void RequestStopPullorAimObject();
+
+	///* Base lookup rate, in deg/sec. Other scaling may affect final lookup rate. */
+	//UPROPERTY(EditAnywhere, Category = "Look")
+	//	float BaseLookupRate = 90.0f;
+
+	///* Base lookright rate, in deg/sec. Other scaling may affect final lookup rate. */
+	//UPROPERTY(EditAnywhere, Category = "Look")
+	//	float BaseLookRightRate = 90.0f;
+
+	//UPROPERTY(EditAnywhere, Category = "Movement")
+	//	float SprintSpeed = 1200.0f;
 };
