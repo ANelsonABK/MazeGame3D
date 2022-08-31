@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Sound/SoundCue.h"
 #include "MazeGamePlayerController.generated.h"
 
 /**
